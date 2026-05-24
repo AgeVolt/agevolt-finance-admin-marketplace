@@ -12,4 +12,10 @@ Agent ma volat priamo MCP tooly `sf_*`. Priame HTTP volania na `/index.php/sf_*`
 
 Do Git marketplace nepatria SuperFaktura tokeny, FTP pristupy, customer data, supplier data, realne PDF faktury ani lokalny `config.local.php`.
 
-Zdrojovy PHP server zo stareho `AI/Doplnky/mcp/superfaktura` nebol skopirovany do tohto prveho kroku, aby sme nepreniesli secrets alebo prevadzkovy neporiadok. Migracia serveroveho zdrojaku ma byt samostatny krok s kontrolou secretov.
+Prevadzkovy PHP server code je ulozeny iba v internom SharePointe:
+
+```text
+AI Agent/marketplaces/agevolt-finance-admin-marketplace/plugins/superfaktura/mcp/server_code/
+```
+
+Spolocne WebSupport pristupy su v Creator skill `mcp-websupport` ako SharePoint-only private reference, nie v public Git repozitari.

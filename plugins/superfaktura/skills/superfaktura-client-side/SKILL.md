@@ -5,7 +5,7 @@ description: Pouzi pri klientskej praci so SuperFakturou v AgeVolt, najma ked tr
 
 # SuperFaktura Client Side
 
-Pouzivaj AgeVolt SuperFaktura MCP server `agevolt-superfaktura` a iba klientsky relevantne `sf.*` nastroje.
+Pouzivaj AgeVolt SuperFaktura MCP server `agevolt-superfaktura` a iba klientsky relevantne `sf_*` nastroje.
 
 ## Najprv Nacitaj KB
 
@@ -33,7 +33,7 @@ Mimo scope: nakupne objednavky, dodavatelske faktury, naklady, sklad, pokladna, 
 
 ## Rychla Cesta
 
-- Posledna ostra faktura: `sf.documents.list` s `type=regular`, `per_page=1`, `page=1`, `sort=created`, `direction=DESC`.
+- Posledna ostra faktura: `sf_documents_list` s `type=regular`, `per_page=1`, `page=1`, `sort=created`, `direction=DESC`.
 - Poslednych N faktur: rovnake volanie s `per_page=N`.
 - Cenove ponuky pouzivaju `type=estimate`.
 - Predajne objednavky voci klientovi pouzivaju `type=order`.
@@ -42,14 +42,14 @@ Mimo scope: nakupne objednavky, dodavatelske faktury, naklady, sklad, pokladna, 
 - Dodacie listy pouzivaju `type=delivery`.
 - Nepouzivaj `type=reverse_order`.
 
-Pouzivaj priamo MCP tooly zo servera `agevolt-superfaktura`. Nevolaj SuperFaktura HTTP endpointy cez shell alebo iny fallback. Ak MCP tooly `sf.documents.*` nie su v aktualnom chate viditelne, zastav a povedz, ze MCP server nie je vystaveny do chatu a treba refresh/restart Codexu alebo reinstall/upgrade pluginu.
+Pouzivaj priamo MCP tooly zo servera `agevolt-superfaktura`. Nevolaj SuperFaktura HTTP endpointy cez shell alebo iny fallback. Ak MCP tooly `sf_documents_*` nie su v aktualnom chate viditelne, zastav a povedz, ze MCP server nie je vystaveny do chatu a treba refresh/restart Codexu alebo reinstall/upgrade pluginu.
 
 ## Bezpecny Zapis
 
 Nikdy nevykonaj create/update/delete/send/payment priamo.
 
 1. Najdi alebo over presny ciel.
-2. Zavolaj prislusny preview tool, napriklad `sf.documents.create_preview`, `sf.documents.update_preview` alebo `sf.documents.delete_preview`.
+2. Zavolaj prislusny preview tool, napriklad `sf_documents_create_preview`, `sf_documents_update_preview` alebo `sf_documents_delete_preview`.
 3. V odpovedi ukaz pouzivatelovi co sa ide zmenit, cielovy zaznam, riziko a `confirmation_id`.
 4. Execute tool zavolaj az po jasnom potvrdeni v aktualnej konverzacii.
 5. Execute toolu posli iba `confirmation_id`.
@@ -62,14 +62,5 @@ Ak pouzivatel nepotvrdi explicitne, skonci previewom.
 - Neries nakupne objednavky, dodavatelske faktury, naklady, sklad, pokladnu ani interne SuperFaktura nastavenia.
 - Nepouzivaj stare tool nazvy ako `list_recent_documents`, `get_document`, `create_document`, `edit_document` alebo `convert_document`.
 - Nekopiruj customer data ani realne doklady do Git repozitara alebo markdown suborov.
-- Nepouzivaj `sf.api.write` bez predchadzajuceho `sf.api.write_preview`.
-- Neobchadzaj MCP priamym `Invoke-RestMethod`, `curl` alebo HTTP volanim na `/index.php/sf.*`.
-
-## Pomocny Skript
-
-Na rychle read-only overenie v terminali mozes pouzit:
-
-```powershell
-.\scripts\sf-quick-read.ps1 -Preset last-invoice
-.\scripts\sf-quick-read.ps1 -Preset recent-invoices -Limit 5
-```
+- Nepouzivaj `sf_api_write` bez predchadzajuceho `sf_api_write_preview`.
+- Neobchadzaj MCP priamym `Invoke-RestMethod`, `curl` alebo HTTP volanim na `/index.php/sf_*`.

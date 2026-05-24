@@ -9,4 +9,4 @@ Obsahuje:
 - KB pre klientske aj dodavatelske workflowy,
 - MCP konfiguraciu pre AgeVolt SuperFaktura server.
 
-Zapis, zmazanie, odoslanie a uhrada sa nikdy nevykonavaju priamo: najprv sa pripravi preview, pouzivatel potvrdi aktualnu konverzaciu a az potom sa vola execute s `confirmation_id`. SuperFaktura operacie maju ist cez MCP tooly `sf.*`, nie cez priame HTTP fallback volania. Realne customer, supplier, fakturacne data ani PDF subory nepatria do Git repozitara.
+Zapis, zmazanie, odoslanie a uhrada sa nikdy nevykonavaju priamo: najprv sa pripravi preview, pouzivatel potvrdi aktualnu konverzaciu a az potom sa vola execute s `confirmation_id`. SuperFaktura operacie maju ist cez MCP tooly `sf_*`, nie cez priame HTTP fallback volania. Realne customer, supplier, fakturacne data ani PDF subory nepatria do Git repozitara.

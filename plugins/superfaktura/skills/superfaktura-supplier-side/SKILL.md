@@ -5,7 +5,7 @@ description: Pouzi pri dodavatelskej praci so SuperFakturou v AgeVolt, najma ked
 
 # SuperFaktura Supplier Side
 
-Pouzivaj AgeVolt SuperFaktura MCP server `agevolt-superfaktura` a dodavatelsky relevantne `sf.*` nastroje.
+Pouzivaj AgeVolt SuperFaktura MCP server `agevolt-superfaktura` a dodavatelsky relevantne `sf_*` nastroje.
 
 ## Najprv Nacitaj KB
 
@@ -31,21 +31,21 @@ Klientska strana patri do `superfaktura-client-side`: cenove ponuky, predajne ob
 
 ## Rychla Cesta
 
-- Dodavatelska objednavka pouziva `sf.documents.*` s `type=reverse_order`.
-- Dodavatelska alebo nakladova faktura pouziva `sf.expenses.*`.
-- Posledne nakladove faktury: `sf.expenses.list` s `per_page=N`, `page=1`, `sort=created`, `direction=DESC`.
-- Detail nakladovej faktury: `sf.expenses.get` s presnym `id`.
+- Dodavatelska objednavka pouziva `sf_documents_*` s `type=reverse_order`.
+- Dodavatelska alebo nakladova faktura pouziva `sf_expenses_*`.
+- Posledne nakladove faktury: `sf_expenses_list` s `per_page=N`, `page=1`, `sort=created`, `direction=DESC`.
+- Detail nakladovej faktury: `sf_expenses_get` s presnym `id`.
 - Dodaci list pouzi ako `type=delivery` len ked je jasne, ze ide o podporovany SuperFaktura doklad pre danu operaciu.
-- Priame API `sf.api.write_preview` pouzi iba ked strukturovany tool nestaci a poznas presnu API cestu aj payload.
+- Priame API `sf_api_write_preview` pouzi iba ked strukturovany tool nestaci a poznas presnu API cestu aj payload.
 
-Pouzivaj priamo MCP tooly zo servera `agevolt-superfaktura`. Nevolaj SuperFaktura HTTP endpointy cez shell alebo iny fallback. Ak MCP tooly `sf.documents.*` alebo `sf.expenses.*` nie su v aktualnom chate viditelne, zastav a povedz, ze MCP server nie je vystaveny do chatu a treba refresh/restart Codexu alebo reinstall/upgrade pluginu.
+Pouzivaj priamo MCP tooly zo servera `agevolt-superfaktura`. Nevolaj SuperFaktura HTTP endpointy cez shell alebo iny fallback. Ak MCP tooly `sf_documents_*` alebo `sf_expenses_*` nie su v aktualnom chate viditelne, zastav a povedz, ze MCP server nie je vystaveny do chatu a treba refresh/restart Codexu alebo reinstall/upgrade pluginu.
 
 ## Bezpecny Zapis
 
 Nikdy nevykonaj create/update/delete/sparovanie/nahratie PDF priamo.
 
 1. Najdi alebo over presny ciel.
-2. Zavolaj prislusny preview tool, napriklad `sf.documents.create_preview`, `sf.expenses.create_preview` alebo `sf.expenses.update_preview`.
+2. Zavolaj prislusny preview tool, napriklad `sf_documents_create_preview`, `sf_expenses_create_preview` alebo `sf_expenses_update_preview`.
 3. V odpovedi ukaz pouzivatelovi co sa ide zmenit, cielovy zaznam, riziko a `confirmation_id`.
 4. Execute tool zavolaj az po jasnom potvrdeni v aktualnej konverzacii.
 5. Execute toolu posli iba `confirmation_id`.
@@ -57,8 +57,8 @@ Ak pouzivatel nepotvrdi explicitne, skonci previewom.
 Ked pouzivatel prida PDF fakturu od dodavatela:
 
 1. Vytaz z PDF dodavatela, cislo faktury, variabilny symbol, datum vystavenia, datum dodania, splatnost, menu, sumy, DPH a polozky.
-2. Over dodavatela a duplicitu faktury cez `sf.expenses.list` alebo vyhladanie partnera.
-3. Priprav preview vytvorenia alebo upravy cez `sf.expenses.create_preview` alebo `sf.expenses.update_preview`.
+2. Over dodavatela a duplicitu faktury cez `sf_expenses_list` alebo vyhladanie partnera.
+3. Priprav preview vytvorenia alebo upravy cez `sf_expenses_create_preview` alebo `sf_expenses_update_preview`.
 4. Prilohu PDF nahravaj iba vtedy, ked aktualny MCP/API payload jasne podporuje prilohy alebo ked poznas presnu SuperFaktura API cestu; inak jasne povedz, ze samotne nahratie PDF vyzaduje doplnenie MCP alebo presny podporovany endpoint.
 
 ## Zakazy
@@ -68,5 +68,5 @@ Ked pouzivatel prida PDF fakturu od dodavatela:
 - Nevymyslaj dodavatela, sumy, DPH, splatnost, menu, polozky, cislo faktury ani vazbu na objednavku alebo dodaci list.
 - Nepouzivaj stare tool nazvy ako `list_recent_documents`, `get_document`, `create_document`, `edit_document` alebo `convert_document`.
 - Nekopiruj customer data, supplier data, realne faktury ani PDF subory do Git repozitara alebo markdown suborov.
-- Nepouzivaj `sf.api.write` bez predchadzajuceho `sf.api.write_preview`.
-- Neobchadzaj MCP priamym `Invoke-RestMethod`, `curl` alebo HTTP volanim na `/index.php/sf.*`.
+- Nepouzivaj `sf_api_write` bez predchadzajuceho `sf_api_write_preview`.
+- Neobchadzaj MCP priamym `Invoke-RestMethod`, `curl` alebo HTTP volanim na `/index.php/sf_*`.

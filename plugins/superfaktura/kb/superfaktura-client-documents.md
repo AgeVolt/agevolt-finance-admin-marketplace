@@ -19,20 +19,20 @@ Nepouzivaj `reverse_order`; je to dodavatelska/nakupna objednavka a nepatri do t
 
 ## Povolene Nastroje
 
-- Klienti: `sf.clients.search`, `sf.clients.list`, `sf.clients.get`, `sf.clients.create_preview`, `sf.clients.create`, `sf.clients.update_preview`, `sf.clients.update`, `sf.clients.delete_preview`, `sf.clients.delete`.
-- Klientske doklady: `sf.documents.list`, `sf.documents.get`, `sf.documents.create_preview`, `sf.documents.create`, `sf.documents.update_preview`, `sf.documents.update`, `sf.documents.delete_preview`, `sf.documents.delete`.
-- Odoslanie dokladu: `sf.documents.send_email_preview`, potom `sf.documents.send_email`.
-- Uhrada dokladu: `sf.documents.add_payment_preview`, potom `sf.documents.add_payment`.
-- Kontaktne osoby klienta: `sf.contact_persons.*`, iba ak su potrebne pre klientsky doklad.
-- Ciselniky: `sf.value_lists.*`, iba ak su potrebne pre klientsky doklad.
-- Priame API: `sf.api.get`, `sf.api.write_preview`, `sf.api.write`, iba ked klientsku operaciu nepokryva strukturovany `sf.*` nastroj.
+- Klienti: `sf_clients_search`, `sf_clients_list`, `sf_clients_get`, `sf_clients_create_preview`, `sf_clients_create`, `sf_clients_update_preview`, `sf_clients_update`, `sf_clients_delete_preview`, `sf_clients_delete`.
+- Klientske doklady: `sf_documents_list`, `sf_documents_get`, `sf_documents_create_preview`, `sf_documents_create`, `sf_documents_update_preview`, `sf_documents_update`, `sf_documents_delete_preview`, `sf_documents_delete`.
+- Odoslanie dokladu: `sf_documents_send_email_preview`, potom `sf_documents_send_email`.
+- Uhrada dokladu: `sf_documents_add_payment_preview`, potom `sf_documents_add_payment`.
+- Kontaktne osoby klienta: `sf_contact_persons_*`, iba ak su potrebne pre klientsky doklad.
+- Ciselniky: `sf_value_lists_*`, iba ak su potrebne pre klientsky doklad.
+- Priame API: `sf_api_get`, `sf_api_write_preview`, `sf_api_write`, iba ked klientsku operaciu nepokryva strukturovany `sf_*` nastroj.
 
 ## Bezpecny Zapis
 
 Kazdy zapis, zmazanie, odoslanie a uhrada ma tri kroky:
 
 1. Najdi presny ciel a over ID, typ dokladu, klienta a sumy.
-2. Zavolaj preview tool, napriklad `sf.documents.create_preview`.
+2. Zavolaj preview tool, napriklad `sf_documents_create_preview`.
 3. Pouzivatelovi ukaz zhrnutie, riziko a `confirmation_id`.
 4. Execute tool volaj az po explicitnom potvrdeni v aktualnej konverzacii.
 5. Execute toolu posli iba `confirmation_id`.
@@ -41,8 +41,8 @@ Ak chyba klient, suma, DPH, mena, datum, splatnost alebo polozky, najprv sa opyt
 
 ## Quick Reads
 
-- Posledna ostra faktura: `sf.documents.list` s `type=regular`, `per_page=1`, `page=1`, `sort=created`, `direction=DESC`.
+- Posledna ostra faktura: `sf_documents_list` s `type=regular`, `per_page=1`, `page=1`, `sort=created`, `direction=DESC`.
 - Poslednych N ostrych faktur: rovnake volanie s `per_page=N`.
-- Posledna cenova ponuka: `sf.documents.list` s `type=estimate`, `per_page=1`, `page=1`, `sort=created`, `direction=DESC`.
-- Detail dokladu: `sf.documents.get`, az ked treba polozky, PDF alebo uplny detail.
-- Vystavil/autor ponuky: najdi doklad cez `sf.documents.list`, potom pouzi `sf.api.get` s `path="/invoices/view/{id}.json"` a citaj `Invoice.issued_by`.
+- Posledna cenova ponuka: `sf_documents_list` s `type=estimate`, `per_page=1`, `page=1`, `sort=created`, `direction=DESC`.
+- Detail dokladu: `sf_documents_get`, az ked treba polozky, PDF alebo uplny detail.
+- Vystavil/autor ponuky: najdi doklad cez `sf_documents_list`, potom pouzi `sf_api_get` s `path="/invoices/view/{id}.json"` a citaj `Invoice.issued_by`.

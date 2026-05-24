@@ -1,0 +1,7 @@
+{
+  "name": "agevolt-finance-admin-marketplace",
+  "interface": {
+    "displayName": "AgeVolt Finance Admin"
+  },
+  "plugins": []
+}

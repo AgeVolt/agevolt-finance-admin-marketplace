@@ -1,0 +1,42 @@
+{
+  "name": "superfaktura",
+  "version": "0.1.0",
+  "description": "AgeVolt finance/admin plugin for client-side SuperFaktura documents through the AgeVolt SuperFaktura MCP server.",
+  "author": {
+    "name": "AgeVolt",
+    "email": "zustiak@agevolt.com",
+    "url": "https://www.agevolt.com"
+  },
+  "homepage": "https://github.com/AgeVolt/agevolt-finance-admin-marketplace",
+  "repository": "https://github.com/AgeVolt/agevolt-finance-admin-marketplace",
+  "license": "UNLICENSED",
+  "keywords": [
+    "agevolt",
+    "finance",
+    "admin",
+    "superfaktura",
+    "invoices",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "SuperFaktura",
+    "shortDescription": "Klientske ponuky, objednavky a faktury.",
+    "longDescription": "SuperFaktura plugin pre klientsku cast AgeVolt finance/admin workflowov. Pomaha citat klientov a klientske doklady, pripravovat preview pre vytvorenie, upravu, zmazanie, odoslanie alebo uhradu ponuk, objednavok, zalohovych faktur, ostrych faktur a dodacich listov. Zapis vykona az po explicitnom potvrdeni pouzivatela.",
+    "developerName": "AgeVolt",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://www.agevolt.com",
+    "brandColor": "#280046",
+    "defaultPrompt": [
+      "Najdi poslednu klientsku fakturu.",
+      "Priprav preview cenovej ponuky.",
+      "Uprav klientsky doklad cez preview."
+    ]
+  }
+}

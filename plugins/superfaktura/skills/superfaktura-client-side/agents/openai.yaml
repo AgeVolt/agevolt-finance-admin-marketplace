@@ -1,0 +1,4 @@
+interface:
+  display_name: "SuperFaktura Client Side"
+  short_description: "Klientske doklady v SuperFakture."
+  default_prompt: "Najdi poslednu klientsku fakturu v SuperFakture."

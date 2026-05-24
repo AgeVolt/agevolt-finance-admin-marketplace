@@ -3,5 +3,18 @@
   "interface": {
     "displayName": "AgeVolt Finance Admin"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "superfaktura",
+      "source": {
+        "source": "local",
+        "path": "./plugins/superfaktura"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
 }

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "agevolt-superfaktura": {
+      "type": "http",
+      "url": "https://documents.agevolt.com/mcp/superfaktura/mcp"
+    }
+  }
+}

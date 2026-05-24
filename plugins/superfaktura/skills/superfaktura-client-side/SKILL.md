@@ -1,0 +1,78 @@
+---
+name: superfaktura-client-side
+description: Pouzi pri klientskej praci so SuperFakturou v AgeVolt, najma ked treba citat klientov alebo klientske doklady, vytvorit, upravit, zmazat, odoslat alebo uhradit cenovu ponuku, predajnu objednavku, zalohovu fakturu, ostru fakturu alebo dodaci list cez AgeVolt MCP. Neries nakupne objednavky, naklady, sklad, pokladnu ani ine casti SuperFaktury. Pri zapise vzdy najprv priprav preview a execute volaj az po explicitnom potvrdeni pouzivatela.
+---
+
+# SuperFaktura Client Side
+
+Pouzivaj AgeVolt SuperFaktura MCP server `agevolt-superfaktura` a iba klientsky relevantne `sf.*` nastroje.
+
+## Najprv Nacitaj KB
+
+Pri prvej praci so zapisom, zmazanim, odoslanim, uhradou alebo nejasnym typom klientskeho dokladu precitaj:
+
+- `../../kb/superfaktura-client-documents.md`
+- `../../kb/superfaktura-mcp.md`
+
+Pri jednoduchom read-only dotaze mozes rovno pouzit nastroj.
+
+## Scope
+
+Tento skill je iba pre klientsku stranu:
+
+- klienti,
+- cenove ponuky,
+- predajne objednavky,
+- zalohove faktury,
+- ostre faktury,
+- dodacie listy,
+- odoslanie dokladu klientovi,
+- uhrady klientskych dokladov.
+
+Mimo scope: nakupne objednavky, dodavatelske faktury, naklady, sklad, pokladna, tagy a vseobecne nastavenia SuperFaktury.
+
+## Rychla Cesta
+
+- Posledna ostra faktura: `sf.documents.list` s `type=regular`, `per_page=1`, `page=1`, `sort=created`, `direction=DESC`.
+- Poslednych N faktur: rovnake volanie s `per_page=N`.
+- Cenove ponuky pouzivaju `type=estimate`.
+- Predajne objednavky voci klientovi pouzivaju `type=order`.
+- Zalohove faktury pouzivaju `type=proforma`.
+- Ostre faktury pouzivaju `type=regular`.
+- Dodacie listy pouzivaju `type=delivery`.
+- Nepouzivaj `type=reverse_order`.
+
+Ak MCP tool nie je priamo viditelny, pouzi priamy JSON endpoint:
+
+```text
+https://documents.agevolt.com/mcp/superfaktura/
+```
+
+## Bezpecny Zapis
+
+Nikdy nevykonaj create/update/delete/send/payment priamo.
+
+1. Najdi alebo over presny ciel.
+2. Zavolaj prislusny preview tool, napriklad `sf.documents.create_preview`, `sf.documents.update_preview` alebo `sf.documents.delete_preview`.
+3. V odpovedi ukaz pouzivatelovi co sa ide zmenit, cielovy zaznam, riziko a `confirmation_id`.
+4. Execute tool zavolaj az po jasnom potvrdeni v aktualnej konverzacii.
+5. Execute toolu posli iba `confirmation_id`.
+
+Ak pouzivatel nepotvrdi explicitne, skonci previewom.
+
+## Zakazy
+
+- Nevymyslaj ceny, DPH, splatnost, menu, klienta ani polozky.
+- Neries nakupne objednavky, dodavatelske faktury, naklady, sklad, pokladnu ani interne SuperFaktura nastavenia.
+- Nepouzivaj stare tool nazvy ako `list_recent_documents`, `get_document`, `create_document`, `edit_document` alebo `convert_document`.
+- Nekopiruj customer data ani realne doklady do Git repozitara alebo markdown suborov.
+- Nepouzivaj `sf.api.write` bez predchadzajuceho `sf.api.write_preview`.
+
+## Pomocny Skript
+
+Na rychle read-only overenie v terminali mozes pouzit:
+
+```powershell
+.\scripts\sf-quick-read.ps1 -Preset last-invoice
+.\scripts\sf-quick-read.ps1 -Preset recent-invoices -Limit 5
+```

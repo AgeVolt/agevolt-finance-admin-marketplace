@@ -1,0 +1,20 @@
+id: superfaktura
+display_name: "SuperFaktura"
+status: active-mvp
+purpose: "Klientska cast SuperFaktury cez AgeVolt MCP: klienti, ponuky, objednavky, zalohove faktury, ostre faktury, dodacie listy, odoslanie, uhrady a bezpecne preview/write workflowy."
+skills:
+  - id: superfaktura-client-side
+    status: active-mvp
+kb:
+  - superfaktura-client-documents.md
+  - superfaktura-mcp.md
+mcp:
+  - id: agevolt-superfaktura
+    type: http
+    url: "https://documents.agevolt.com/mcp/superfaktura/mcp"
+rules:
+  require_preview_before_write: true
+  require_explicit_confirmation_before_execute: true
+  execute_accepts_only_confirmation_id: true
+  client_side_scope_only: true
+  do_not_copy_customer_data_to_git: true

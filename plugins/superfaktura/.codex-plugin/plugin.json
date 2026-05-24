@@ -1,6 +1,6 @@
 {
   "name": "superfaktura",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "AgeVolt finance/admin plugin for SuperFaktura client and supplier workflows through the AgeVolt SuperFaktura MCP server.",
   "author": {
     "name": "AgeVolt",

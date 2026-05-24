@@ -42,7 +42,7 @@ Mimo scope: nakupne objednavky, dodavatelske faktury, naklady, sklad, pokladna, 
 - Dodacie listy pouzivaju `type=delivery`.
 - Nepouzivaj `type=reverse_order`.
 
-Pouzivaj priamo MCP tooly zo servera `agevolt-superfaktura`. Nevolaj SuperFaktura HTTP endpointy cez shell alebo iny fallback.
+Pouzivaj priamo MCP tooly zo servera `agevolt-superfaktura`. Nevolaj SuperFaktura HTTP endpointy cez shell alebo iny fallback. Necitaj `%USERPROFILE%\.codex\.credentials.json`, nevyberaj z neho access token a neskladaj rucne `Authorization: Bearer` volania cez PowerShell.
 
 Ak MCP tooly `sf_documents_*` nie su v aktualnom chate viditelne:
 
@@ -55,6 +55,7 @@ codex mcp login agevolt-superfaktura --scopes MCP.Access
 
 3. Po uspesnom prihlaseni ma `codex mcp list` ukazat `Auth OAuth`.
 4. Potom treba otvorit novy chat alebo restartovat/refreshnut Codex, aby sa MCP tooly vystavili do aktualneho tool surface.
+5. Ak tooly stale nie su v tomto chate viditelne, zastav a povedz, ze je potrebny novy chat/refresh. Nepokracuj cez `Invoke-WebRequest`, `curl`, `.credentials.json` ani raw MCP HTTP volanie.
 
 Prihlasenie moze prebehnut bez zadania hesla, ak je pouzivatel uz prihlaseny do MS365 v browseri. Stranka `Authentication complete` znamena uspesny OAuth callback.
 
@@ -77,4 +78,4 @@ Ak pouzivatel nepotvrdi explicitne, skonci previewom.
 - Nepouzivaj stare tool nazvy ako `list_recent_documents`, `get_document`, `create_document`, `edit_document` alebo `convert_document`.
 - Nekopiruj customer data ani realne doklady do Git repozitara alebo markdown suborov.
 - Nepouzivaj `sf_api_write` bez predchadzajuceho `sf_api_write_preview`.
-- Neobchadzaj MCP priamym `Invoke-RestMethod`, `curl` alebo HTTP volanim na `/index.php/sf_*`.
+- Neobchadzaj MCP priamym `Invoke-RestMethod`, `Invoke-WebRequest`, `curl`, HTTP volanim na `/index.php/sf_*`, citanim `.credentials.json` ani rucnym bearer tokenom.

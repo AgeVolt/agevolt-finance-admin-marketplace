@@ -1,7 +1,7 @@
 {
   "name": "agevolt-finance-admin-marketplace",
   "interface": {
-    "displayName": "AgeVolt Finance Admin"
+    "displayName": "Built by AgeVolt"
   },
   "plugins": [
     {

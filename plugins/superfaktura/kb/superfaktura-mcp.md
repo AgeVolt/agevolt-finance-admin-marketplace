@@ -24,14 +24,15 @@ Codex plugin pouziva MCP konfiguraciu:
 ## Tool Groups V Scope Tohto Pluginu
 
 - `sf.meta.*` - status konektora a API.
-- `sf.clients.*` - klienti.
-- `sf.documents.*` - klientske ponuky, objednavky, zalohove faktury, ostre faktury, dodacie listy a storna.
-- `sf.contact_persons.*` - kontaktne osoby klientov, iba ak su potrebne pre klientsky doklad.
-- `sf.value_lists.*` - dynamicke ciselniky, iba ak su potrebne pre klientsky doklad.
-- `sf.api.get` - read-only detail klienta alebo dokladu, ked strukturovany tool nestaci.
-- `sf.api.write_preview`, `sf.api.write` - iba pre klientsku operaciu bez strukturovaneho toolu.
+- `sf.clients.*` - klienti alebo obchodni partneri, ak ich SuperFaktura pouziva aj pri dodavateloch.
+- `sf.documents.*` - klientske doklady a dodavatelske objednavky.
+- `sf.expenses.*` - dodavatelske alebo nakladove faktury.
+- `sf.contact_persons.*` - kontaktne osoby, iba ak su potrebne pre konkretny doklad.
+- `sf.value_lists.*` - dynamicke ciselniky, iba ak su potrebne pre doklad.
+- `sf.api.get` - read-only detail partnera alebo dokladu, ked strukturovany tool nestaci.
+- `sf.api.write_preview`, `sf.api.write` - iba pre operaciu bez strukturovaneho toolu a iba ked je znama presna API cesta aj payload.
 
-Mimo scope prvej verzie: `sf.expenses.*`, `sf.stock.*`, `sf.cash_registers.*`, `sf.cash_register_items.*`, nakupne/dodavatelske objednavky, sklad a pokladna.
+Mimo scope aktualnej verzie: sklad, pokladna, vseobecne nastavenia SuperFaktury a akekolvek operacie, pri ktorych nie je jasny ciel alebo podporovany payload.
 
 ## Smoke Test
 
@@ -39,5 +40,6 @@ Mimo scope prvej verzie: `sf.expenses.*`, `sf.stock.*`, `sf.cash_registers.*`, `
 - `/?openapi=1` obsahuje `sf.*` nastroje.
 - MCP `tools/list` vrati SuperFaktura tool list.
 - Read-only `sf.documents.list` s klientskym typom dokladu vrati data alebo korektnu SuperFaktura chybu.
+- Read-only `sf.expenses.list` vrati data alebo korektnu SuperFaktura chybu.
 - Preview tool, napriklad `sf.documents.create_preview`, vrati `preview_ready` a `confirmation_id` bez vykonania zapisu.
 - Execute bez `confirmation_id` musi byt odmietnuty.

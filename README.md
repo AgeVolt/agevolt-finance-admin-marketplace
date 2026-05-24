@@ -8,6 +8,6 @@ Tento marketplace pracuje s citlivymi financnymi datami. Pluginy musia mat jasne
 
 ## Pluginy
 
-- `superfaktura` - klientska cast SuperFaktury cez AgeVolt MCP: klienti, cenove ponuky, predajne objednavky, zalohove faktury, ostre faktury, dodacie listy, uhrady a odosielanie.
+- `superfaktura` - SuperFaktura cez AgeVolt MCP: klientske ponuky, predajne objednavky, faktury, dodacie listy, odosielanie a uhrady; dodavatelske objednavky, nakladove faktury, dodavatelske dodacie listy, sparovanie dokladov a spracovanie PDF podkladov.
 
 Kazdy zapis, zmazanie, odoslanie alebo uhrada musi ist cez preview -> explicitne potvrdenie -> execute.

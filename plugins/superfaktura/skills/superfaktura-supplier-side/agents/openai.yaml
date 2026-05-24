@@ -1,0 +1,7 @@
+interface:
+  display_name: "SuperFaktura Supplier Side"
+  short_description: "Dodavatelske objednavky a nakladove faktury."
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/logo.png"
+  brand_color: "#280046"
+  default_prompt: "Zaeviduj dodavatelsku fakturu z PDF cez preview."

@@ -1,7 +1,7 @@
 {
   "name": "superfaktura",
-  "version": "0.1.1",
-  "description": "AgeVolt finance/admin plugin for client-side SuperFaktura documents through the AgeVolt SuperFaktura MCP server.",
+  "version": "0.2.0",
+  "description": "AgeVolt finance/admin plugin for SuperFaktura client and supplier workflows through the AgeVolt SuperFaktura MCP server.",
   "author": {
     "name": "AgeVolt",
     "email": "zustiak@agevolt.com",
@@ -22,8 +22,8 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "SuperFaktura",
-    "shortDescription": "Klientske ponuky, objednavky a faktury.",
-    "longDescription": "SuperFaktura plugin pre klientsku cast AgeVolt finance/admin workflowov. Pomaha citat klientov a klientske doklady, pripravovat preview pre vytvorenie, upravu, zmazanie, odoslanie alebo uhradu ponuk, objednavok, zalohovych faktur, ostrych faktur a dodacich listov. Zapis vykona az po explicitnom potvrdeni pouzivatela.",
+    "shortDescription": "Klientske a dodavatelske doklady.",
+    "longDescription": "SuperFaktura plugin pre AgeVolt finance/admin workflowy. Obsahuje oddelene skilly pre klientsku stranu a dodavatelsku stranu: ponuky, objednavky, faktury, dodacie listy, dodavatelske objednavky, nakladove faktury a spracovanie dodavatelskych PDF podkladov. Zapis vykona az po preview a explicitnom potvrdeni pouzivatela.",
     "developerName": "AgeVolt",
     "category": "Productivity",
     "capabilities": [
@@ -37,8 +37,8 @@
     "logo": "./assets/logo.png",
     "defaultPrompt": [
       "Najdi poslednu klientsku fakturu.",
-      "Priprav preview cenovej ponuky.",
-      "Uprav klientsky doklad cez preview."
+      "Vytvor preview dodavatelskej objednavky.",
+      "Zaeviduj dodavatelsku fakturu z PDF cez preview."
     ]
   }
 }

@@ -38,7 +38,21 @@ Klientska strana patri do `superfaktura-client-side`: cenove ponuky, predajne ob
 - Dodaci list pouzi ako `type=delivery` len ked je jasne, ze ide o podporovany SuperFaktura doklad pre danu operaciu.
 - Priame API `sf_api_write_preview` pouzi iba ked strukturovany tool nestaci a poznas presnu API cestu aj payload.
 
-Pouzivaj priamo MCP tooly zo servera `agevolt-superfaktura`. Nevolaj SuperFaktura HTTP endpointy cez shell alebo iny fallback. Ak MCP tooly `sf_documents_*` alebo `sf_expenses_*` nie su v aktualnom chate viditelne, zastav a povedz, ze MCP server nie je vystaveny do chatu a treba refresh/restart Codexu alebo reinstall/upgrade pluginu.
+Pouzivaj priamo MCP tooly zo servera `agevolt-superfaktura`. Nevolaj SuperFaktura HTTP endpointy cez shell alebo iny fallback.
+
+Ak MCP tooly `sf_documents_*` alebo `sf_expenses_*` nie su v aktualnom chate viditelne:
+
+1. Najprv over, ci je MCP server zaregistrovany a prihlaseny.
+2. Ak `agevolt-superfaktura` nema OAuth login, spusti alebo pouzivatelovi odporuc presny prikaz:
+
+```text
+codex mcp login agevolt-superfaktura --scopes MCP.Access
+```
+
+3. Po uspesnom prihlaseni ma `codex mcp list` ukazat `Auth OAuth`.
+4. Potom treba otvorit novy chat alebo restartovat/refreshnut Codex, aby sa MCP tooly vystavili do aktualneho tool surface.
+
+Prihlasenie moze prebehnut bez zadania hesla, ak je pouzivatel uz prihlaseny do MS365 v browseri. Stranka `Authentication complete` znamena uspesny OAuth callback.
 
 ## Bezpecny Zapis
 

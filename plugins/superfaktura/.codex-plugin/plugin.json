@@ -1,6 +1,6 @@
 {
   "name": "superfaktura",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "AgeVolt finance/admin plugin for client-side SuperFaktura documents through the AgeVolt SuperFaktura MCP server.",
   "author": {
     "name": "AgeVolt",
@@ -33,6 +33,8 @@
     ],
     "websiteURL": "https://www.agevolt.com",
     "brandColor": "#280046",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png",
     "defaultPrompt": [
       "Najdi poslednu klientsku fakturu.",
       "Priprav preview cenovej ponuky.",

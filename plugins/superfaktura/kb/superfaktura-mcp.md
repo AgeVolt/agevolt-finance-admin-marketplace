@@ -21,6 +21,8 @@ Codex plugin pouziva MCP konfiguraciu:
 }
 ```
 
+Tieto endpointy su diagnostika a konfiguracia. Bezne tasky musia pouzivat priamo MCP tooly `sf.*` zo servera `agevolt-superfaktura`. Agent nema obchadzat MCP priamym HTTP volanim na `/index.php/sf.*`. Ak `sf.*` MCP tooly nie su v chate viditelne, treba riesit instalaciu, upgrade, refresh alebo restart Codexu.
+
 ## Tool Groups V Scope Tohto Pluginu
 
 - `sf.meta.*` - status konektora a API.

@@ -20,4 +20,6 @@ rules:
   require_explicit_confirmation_before_execute: true
   execute_accepts_only_confirmation_id: true
   separate_client_and_supplier_skills: true
+  use_mcp_tools_directly: true
+  do_not_call_http_fallback_endpoints: true
   do_not_copy_customer_data_to_git: true

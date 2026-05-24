@@ -4,4 +4,11 @@ interface:
   icon_small: "./assets/icon.png"
   icon_large: "./assets/logo.png"
   brand_color: "#280046"
-  default_prompt: "Zaeviduj dodavatelsku fakturu z PDF cez preview."
+  default_prompt: "Use $superfaktura-supplier-side to record a supplier invoice from PDF through preview."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "agevolt-superfaktura"
+      description: "AgeVolt SuperFaktura MCP server"
+      transport: "streamable_http"
+      url: "https://documents.agevolt.com/mcp/superfaktura/mcp"

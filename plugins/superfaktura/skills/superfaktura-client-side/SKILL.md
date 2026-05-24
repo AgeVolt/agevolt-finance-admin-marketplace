@@ -42,11 +42,7 @@ Mimo scope: nakupne objednavky, dodavatelske faktury, naklady, sklad, pokladna, 
 - Dodacie listy pouzivaju `type=delivery`.
 - Nepouzivaj `type=reverse_order`.
 
-Ak MCP tool nie je priamo viditelny, pouzi priamy JSON endpoint:
-
-```text
-https://documents.agevolt.com/mcp/superfaktura/
-```
+Pouzivaj priamo MCP tooly zo servera `agevolt-superfaktura`. Nevolaj SuperFaktura HTTP endpointy cez shell alebo iny fallback. Ak MCP tooly `sf.documents.*` nie su v aktualnom chate viditelne, zastav a povedz, ze MCP server nie je vystaveny do chatu a treba refresh/restart Codexu alebo reinstall/upgrade pluginu.
 
 ## Bezpecny Zapis
 
@@ -67,6 +63,7 @@ Ak pouzivatel nepotvrdi explicitne, skonci previewom.
 - Nepouzivaj stare tool nazvy ako `list_recent_documents`, `get_document`, `create_document`, `edit_document` alebo `convert_document`.
 - Nekopiruj customer data ani realne doklady do Git repozitara alebo markdown suborov.
 - Nepouzivaj `sf.api.write` bez predchadzajuceho `sf.api.write_preview`.
+- Neobchadzaj MCP priamym `Invoke-RestMethod`, `curl` alebo HTTP volanim na `/index.php/sf.*`.
 
 ## Pomocny Skript
 
